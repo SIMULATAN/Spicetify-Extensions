@@ -1,0 +1,9 @@
+[
+  {
+    "name": "No Tracking Links",
+    "description": "Adds a \"copy link\" button that copies the link to the item *without* spotify's tracking",
+    "preview": "https://i.imgur.com/ZdCdekQ.png",
+    "main": "Extensions/noTrackingLinks.js",
+    "readme": "EXTENSIONS.md#no-tracking-links"
+  }
+]
