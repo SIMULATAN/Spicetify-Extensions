@@ -4,17 +4,17 @@
 
 /// <reference path="globals.d.ts" />
 
-let copyTextCount = 0;
-(async function copyText() {
-  if (!Spicetify && copyTextCount < 1000) {
-    setTimeout(copyText, 10);
-    copyTextCount++;
+let copyLinkCount = 0;
+(async function copyLink() {
+  if (!Spicetify && copyLinkCount < 1000) {
+    setTimeout(copyLink, 10);
+    copyLinkCount++;
     return;
   }
-  initCopyText();
+  initCopyLink();
 })();
 
-function initCopyText() {
+function initCopyLink() {
   const {Type} = Spicetify.URI;
 
   async function getText(uris) {
@@ -38,6 +38,8 @@ function initCopyText() {
       case Type.SHOW:
 				sendToClipboard(`https://open.spotify.com/show/${id}`)
         break;
+      case Type.EPISODE:
+				sendToClipboard(`https://open.spotify.com/episode/${id}`)
       case Type.PROFILE:
 				sendToClipboard(`https://open.spotify.com/user/${id}`)
         break;
@@ -48,7 +50,7 @@ function initCopyText() {
 
   function sendToClipboard(text) {
     if (text) {
-      Spicetify.showNotification(`Copied!`);
+      Spicetify.showNotification(`Link Copied!`);
       Spicetify.Platform.ClipboardAPI.copy(text);
     }
   }
@@ -63,6 +65,7 @@ function initCopyText() {
         case Type.PLAYLIST:
         case Type.PLAYLIST_V2:
         case Type.SHOW:
+        case Type.EPISODE:
         case Type.PROFILE:
           return true;
       }
@@ -71,7 +74,7 @@ function initCopyText() {
   }
 
   new Spicetify.ContextMenu.Item(
-    'Copy Link (no tracking)',
+    'Copy Link',
     getText,
     shouldAddContextMenu,
     'copy',
