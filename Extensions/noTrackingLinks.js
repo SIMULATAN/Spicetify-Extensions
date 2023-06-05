@@ -19,7 +19,7 @@ function initCopyLink() {
 
   async function getText(uris) {
     const uri = Spicetify.URI.fromString(uris[0]);
-    const id = uri._base62Id ? uri._base62Id : uri.id;
+    const id = uri._base62Id ?? uri.id ?? uri.username;
 
     switch (uri.type) {
       case Type.TRACK:
